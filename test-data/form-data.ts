@@ -1,8 +1,8 @@
 export type formData = {
-    fullName: string;
+    fullName?: string;
     email: string;
-    currentAddress: string;
-    permanentAddress: string;
+    currentAddress?: string;
+    permanentAddress?: string;
 };
 
 export function buildFormData(overrideValues: Partial<formData> = {}): formData {  
