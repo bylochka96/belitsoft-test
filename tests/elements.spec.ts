@@ -1,5 +1,6 @@
 import { test, expect } from '../fixtures/demoqa.fixture';
-import { buildFormData } from '../test-data/form-data';
+import { buildFormData } from '../test-data/text-box-data';
+import { expectedSelectedItems } from '../test-data/check-box-data';
 
 test.describe('DemoQA Elements', () => {
 
@@ -27,7 +28,12 @@ test.describe('DemoQA Elements', () => {
 
     });
 
-    test('selecting Home marks all child items', async ({ }) => {
+    test('selecting Home marks all child items', async ({ checkBoxPage }) => {
+
+        await checkBoxPage.homeCheckBox.click();
+
+        await expect(checkBoxPage.homeCheckBox).toHaveAttribute('aria-checked', 'true');
+        await expect(checkBoxPage.selectedItems).toHaveText(expectedSelectedItems);
 
     });
 

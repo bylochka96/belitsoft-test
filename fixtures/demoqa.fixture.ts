@@ -3,10 +3,12 @@ import {test as base, type Page, expect } from '@playwright/test';
 import { HomePage } from '../pages/home.page';
 import { ElementsPage } from '../pages/elements.page';
 import { TextBoxPage } from '../pages/text-box.page';
+import { CheckBoxPage } from '../pages/check-box.page';
 
 
 type AppFixtures = {
   textBoxPage: TextBoxPage;
+  checkBoxPage: CheckBoxPage;
 };
 
 async function openElements(page: Page): Promise<ElementsPage> {
@@ -31,6 +33,16 @@ export const test = base.extend<AppFixtures>({
 
     await use(textBoxPage);
   },
+
+  checkBoxPage: async ({ page }, use) => {
+    const elementsPage = await openElements(page);
+    const checkBoxPage = new CheckBoxPage(page);
+
+    await elementsPage.checkBoxLink.click();
+    await expect(checkBoxPage.heading).toBeVisible();
+
+    await use(checkBoxPage);
+  }
 
 });
 

@@ -1,5 +1,5 @@
 import { type Locator, type Page } from '@playwright/test';
-import { type formData } from '../test-data/form-data';
+import { type formData } from '../test-data/text-box-data';
 
 
 export class TextBoxPage {
