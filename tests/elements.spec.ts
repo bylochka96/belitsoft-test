@@ -31,8 +31,15 @@ test.describe('DemoQA Elements', () => {
     test('selecting Home marks all child items', async ({ checkBoxPage }) => {
 
         await checkBoxPage.homeCheckBox.click();
-
         await expect(checkBoxPage.homeCheckBox).toHaveAttribute('aria-checked', 'true');
+
+        await checkBoxPage.expandAll();
+
+        const checkBoxes = await checkBoxPage.checkBoxes.all();
+        for (const checkBox of checkBoxes) {
+            await expect(checkBox).toHaveAttribute('aria-checked', 'true');
+        }
+
         await expect(checkBoxPage.selectedItems).toHaveText(expectedSelectedItems);
 
     });
